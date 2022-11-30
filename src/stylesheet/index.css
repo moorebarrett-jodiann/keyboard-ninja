@@ -126,6 +126,7 @@ h2 {
 }
 
 .center .game-container .word-container p {
+    height: 150px;
     font-size: 100px;
     font-weight: 700;
     color: var(--app-white);
@@ -166,7 +167,6 @@ h2 {
     height: 50px;
     display: block;
     border-radius: 50px;
-    background-color: var(--app-blue);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
     font-size: 20px;
     font-weight: 600;
@@ -174,5 +174,13 @@ h2 {
     transition: all 0.25s ease-in-out;
     color: var(--app-white);
     padding: 0px 20px;
+}
+
+.center .game-container .input-controls button.start {
+    background-color: var(--app-green);
+}
+
+.center .game-container .input-controls button.stop {
+    background-color: var(--app-red);
 }
 
