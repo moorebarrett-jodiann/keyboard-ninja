@@ -10,6 +10,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;500;600;700;800&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="src/stylesheet/index.css" media="all"/>
         <script src="src/scripts/index.js" type="module"></script>
@@ -17,7 +19,25 @@
     </head>
     <body>
         <main>
-            
+            <div class="container">
+                <div class="center">
+                    <div class="game-container">
+                        <h1><span class="bungee">Keyboard</span> <span class="merienda">Ninja</span></h1>
+                        <div class="stats flexbox">
+                            <div class="hits"><p>Hits : <span>0</span></p></div>
+                            <div class="timer"><p>Time Remaining : <span>100</span></p></div>
+                        </div>
+                        <div class="word-container">
+                            <p class="word">Test</p>
+                        </div>
+                        <div class="input-controls">
+                            <label for="user-input">Hint: Type the word above as fast as you can.</label>
+                            <input type="text" id="user-input" class="user-input">
+                            <button class="btn start">Click to Begin</button>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </main>
     </body>
 </html>

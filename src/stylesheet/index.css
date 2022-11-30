@@ -42,15 +42,14 @@ body {
 /**************************************************/
 /*****       Main                            ******/
 /**************************************************/
+h1, h2, h3, a, p, label {
+    color: rgb(244, 246, 248);
+}
 
 h2 {
     margin-bottom: 20px;
     font-weight: 500;
     font-size: 25px;
-}
-
-p {
-    font-size: 17px;
 }
 
 /**************************************************/
@@ -60,3 +59,114 @@ p {
 .flexbox {
     display: flex;
 }
+
+.center {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.center .game-container {
+    width: 80%;
+    display: grid;
+    place-items: center;
+}
+
+.center .game-container span.bungee {
+    font-family: 'Bungee', cursive;
+    font-size: 40px;
+}
+
+.center .game-container span.merienda {
+    font-family: 'Merienda', cursive;
+    font-size: 50px;
+}
+
+.center .game-container h1 {
+    margin: 20px 0px;
+}
+
+.center .game-container .stats {
+    width: 100%;
+    background-color: rgba(12, 14, 20, 0.8);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.center .game-container .stats .hits {
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.center .game-container .stats .timer {
+    width: 50%;
+    padding: 20px;
+    text-align: right;
+    font-size: 20px;
+}
+
+.center .game-container .word-container {
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(12, 14, 20, 0.8);
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--app-white);
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.center .game-container .word-container p {
+    font-size: 100px;
+    font-weight: 700;
+    color: var(--app-white);
+}
+
+.center .game-container .input-controls {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    display: grid;
+    place-items: center;
+}
+
+.center .game-container .input-controls label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.center .game-container .input-controls input {
+    width: 80%;
+    height: 100px;
+    display: block;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--app-white);
+    text-align: left;
+}
+
+.center .game-container .input-controls button {
+    height: 50px;
+    display: block;
+    border-radius: 50px;
+    background-color: var(--app-blue);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    transition: all 0.25s ease-in-out;
+    color: var(--app-white);
+    padding: 0px 20px;
+}
+
