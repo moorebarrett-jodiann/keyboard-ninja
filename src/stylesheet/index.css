@@ -181,6 +181,7 @@ h2 {
 }
 
 .center .game-container .input-controls button.stop {
+    display: none;
     background-color: var(--app-red);
 }
 
