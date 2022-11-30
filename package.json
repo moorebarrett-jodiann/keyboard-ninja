@@ -1,0 +1,24 @@
+{
+  "name": "keyboard-ninja",
+  "version": "1.0.0",
+  "description": "- [Click for Demo](https://moorebarrett-jodiann.github.io/keyboard-ninja/)\r - [Description](#description)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moorebarrett-jodiann/keyboard-ninja.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moorebarrett-jodiann/keyboard-ninja/issues"
+  },
+  "homepage": "https://github.com/moorebarrett-jodiann/keyboard-ninja#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

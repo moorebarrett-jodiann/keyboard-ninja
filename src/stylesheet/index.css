@@ -1,0 +1,62 @@
+@import "./reset.css";
+
+:root {
+    --app-dark-bg:#1f2227;
+    --app-red:#ff3c57;
+    --app-yellow:#ffd13c;
+    --app-green:#33ab4e;
+    --app-green-hover:#158f32;
+    --app-purple:#833cff;
+    --app-orange:#ff833c;
+    --app-pink:#f85fdc;
+    --app-orange-hover:#fe7a2d;
+    --app-blue:#3b5998;
+    --app-blue-hover:#30529c;
+    --app-white:#fbfbfb;
+    --app-black:#1a1d21;
+    --app-dark-grey:#222;
+    --app-medium-grey:#b0b3b8;
+    --app-light-grey:#e4e6eb;
+    --app-light-text-color: #fbfbfb;
+    --app-dark-text-color: #1c1c1c;
+    --app-grey-text-color: #343434;
+
+    --app-btn-height: 46px;
+    --app-btn-width: 100%;
+    --app-letter-spacing: 0.2px;
+    --app-header-line-height: 56px;
+    --app-text-line-height: 50px;
+    --app-main-font-size: 18px;
+    --app-secondary-font-size: 14px;
+}
+    
+body {
+    background-color: var(--app-dark-bg);
+}
+
+.container {
+    width: min(100% - 30px, 1080px);
+    margin-inline: auto;
+}
+
+/**************************************************/
+/*****       Main                            ******/
+/**************************************************/
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+p {
+    font-size: 17px;
+}
+
+/**************************************************/
+/*****       Main                            ******/
+/**************************************************/
+
+.flexbox {
+    display: flex;
+}
