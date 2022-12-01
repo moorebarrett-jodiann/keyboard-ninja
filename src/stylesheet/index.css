@@ -74,7 +74,7 @@ body{
 
 .center .game-container .heading p.bungee {
     font-family: 'Bungee', cursive;
-    font-size: 40px;
+    font-size: 50px;
     overflow: hidden;
     border-right: 1px solid #ff833cbf;
     white-space: nowrap;
@@ -85,7 +85,7 @@ body{
 
 .center .game-container .heading p.merienda {
     font-family: 'Merienda', cursive;
-    font-size: 50px;
+    font-size: 60px;
     margin-right: 2px;
     position: relative;
     visibility: hidden;
@@ -148,6 +148,7 @@ body{
 
 .center .game-container .game-details .word-container .hits p {
     color: var(--app-light-text-color);
+    font-size: 20px;
 }
 
 .center .game-container .game-details .input-controls {
@@ -174,7 +175,7 @@ body{
     background-color: rgba(224, 224, 226, 0.96);
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
-    font-size: 30px;
+    font-size: 55px;
     font-weight: 500;
     color: #1C1F33;
     text-align: center;
