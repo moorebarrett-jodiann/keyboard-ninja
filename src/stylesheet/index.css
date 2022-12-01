@@ -189,7 +189,7 @@ body{
 .center .game-container .game-details .input-controls .btn {
     position: fixed;
     right: -60%;
-    bottom: 0;
+    bottom: 50px;
     height: 50px;
     display: none;
     border-radius: 50px;
