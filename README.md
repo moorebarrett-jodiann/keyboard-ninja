@@ -1,6 +1,6 @@
 ## My Contacts
  
-- [Click for Demo](https://moorebarrett-jodiann.github.io/keyboard-ninja/)
+- [Click to Play](https://moorebarrett-jodiann.github.io/keyboard-ninja/)
 - [Description](#description)
 - [Usage](#usage)
 - [Requirements](#requirements)
