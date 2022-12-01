@@ -6,6 +6,7 @@
 - [Requirements](#requirements)
 - [Tests](#tests)
 - [How to Play](#instructions)
+- [Screenshots](#screenshots)
 
 ## Description
 
@@ -70,5 +71,16 @@ To run the application in the browser:
 3. If you spell the word correctly, a new word will be displayed
 4. Get as many words typed before the timer runs out
 
-#### Find out if you the next Keyboard Ninja ####
+## Screenshots
+
+Here are a few screenshots from the game:
+
+![Splash Screen](./src/images/game-screenshots/scoreboard.png?raw=true "Game Splash Screen")
+
+![Game](./src/images/game-screenshots/game-in-progress-with-timer-countdown.png?raw=true "Game in Progress")
+
+![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Game in Progress")
+
+
+##### Find out if you the next Keyboard Ninja ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
