@@ -83,8 +83,8 @@ function generateScore () {
         heading = `<h2 class="pass">Good Job!</h2>`;
         successAudio.play();
     } else {
-        failAudio.play();
         heading = `<h2 class="fail">Better Luck Next Time</h2>`;
+        failAudio.play();
     }
 
     scoreDetails.innerHTML = `
