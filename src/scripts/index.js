@@ -133,7 +133,7 @@ function updateTimer() {
         startButton.style.display = 'block';
         userInput.classList.add('disabled');
         userInput.setAttribute('readonly', 'readonly');
-        timer.innerText = 99;
+        timeRemaining.style.display = 'none';
         generateScore();
         resetGame();
         focusInput();
@@ -174,7 +174,7 @@ function generateWord() {
         startButton.style.display = 'block';
         userInput.classList.add('disabled');
         userInput.setAttribute('readonly', 'readonly');
-        timer.innerText = 99;
+        timeRemaining.style.display = 'none';
         generateScore();
         resetGame();
         focusInput();
