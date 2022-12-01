@@ -98,9 +98,9 @@ body{
 }
 
 .center .game-container .game-details {
-    background-color: rgba(155, 120, 116, 0.496);
+    /* background-color: rgba(155, 120, 116, 0.496); */
     border-radius: 50px;
-    padding: 20px;
+    /* padding: 20px; */
     display: grid;
     place-items: center;
 }
@@ -111,9 +111,8 @@ body{
 }
 
 .center .game-container .game-details .stats .timer {
-    padding: 20px;
-    font-size: 55px;
-    color: var(--app-yellow);
+    font-size: 90px;
+    color: var(--app-light-text-color);
 }
 
 .center .game-container .game-details .stats .timer p span {
@@ -123,7 +122,10 @@ body{
 .center .game-container .game-details .word-container {
     width: 100%;
     padding: 20px;
-    background-color: rgba(12, 14, 20, 0.8);
+    /* background-color: rgba(12, 14, 20, 0.8); */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    border: 1px solid var(--app-yellow);
+    background-color: rgb(148, 28, 28);
     border-radius: 50px;
     font-size: 17px;
     font-weight: 400;
@@ -141,13 +143,12 @@ body{
 
 .center .game-container .game-details .word-container .hits {
     text-align: right;
-    padding: 0px 10px;
+    padding: 0px 20px;
 }
 
 .center .game-container .game-details .word-container .hits p {
     color: var(--app-light-text-color);
 }
-
 
 .center .game-container .game-details .input-controls {
     width: 100%;
@@ -157,14 +158,14 @@ body{
 }
 
 .center .game-container .game-details .input-controls label {
-    display: block;
+    visibility: hidden;
     margin-bottom: 20px;
     font-size: 14px;
     color: rgba(244, 246, 248, 0.34);
 }
 
 .center .game-container .game-details .input-controls input {
-    width: 80%;
+    width: 100%;
     height: 100px;
     display: block;
     margin-bottom: 20px;
@@ -197,6 +198,10 @@ body{
     transition: all 0.25s ease-in-out;
     color: var(--app-white);
     padding: 0px 20px;
+}
+  
+.center .game-container .game-details .input-controls .button-glow {
+    animation: glowing 5000ms infinite;
 }
 
 .center .game-container .game-details .input-controls button.start {
@@ -337,4 +342,11 @@ body{
         opacity: 1;
         transform: translate(0);
     }
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 0 -10px var(--app-yellow); }
+    40% { box-shadow: 0 0 20px var(--app-yellow); }
+    60% { box-shadow: 0 0 20px var(--app-yellow); }
+    100% { box-shadow: 0 0 -10px var(--app-yellow); }
 }

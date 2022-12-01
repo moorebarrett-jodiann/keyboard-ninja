@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;500;600;700;800&display=swap">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="src/stylesheet/index.css" media="all"/>
         <script src="src/scripts/index.js" type="module"></script>
         <title>Keyboard Ninja</title>
@@ -47,10 +47,9 @@
                                 <div class="hits"><p>Hits : <span>0</span></p></div>
                             </div>
                             <div class="input-controls">
-                                <label for="user-input">Hint: Type the word above as fast as you can.</label>
+                                <label for="user-input" class="hint">Hint: Type the word above as fast as you can.</label>
                                 <input type="text" id="user-input" class="user-input disabled" readonly>
-                                <button class="btn start">Start Game</button>
-                                <button class="btn restart"><i class="fa-solid fa-arrows-rotate"></i> Restart</button>
+                                <button class="btn start button-glow">Start Game</button>
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,8 @@ const startButton = select('.start');
 const ninjaHeading = select('.center .game-container .heading p.merienda');
 const ninjaSubheading = select('.center .game-container .heading h3');
 const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
+const clock = select('.center .game-container .game-details .stats .timer p i');
+const hint = select('.hint');
 
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -51,16 +53,35 @@ swordAudio.muted = false;
 swordAudio.type = 'audio/mp3';
 const themeAudio = new Audio('src/audio/theme.mp3');
 themeAudio.muted = false;
-themeAudio.type = 'audio/mp3';
+themeAudio.loop = true;
+const gameProgressAudio = new Audio('src/audio/game-progress.mp3');
+gameProgressAudio.muted = false;
+gameProgressAudio.loop = true;
+gameProgressAudio.type = 'audio/mp3';
 const successAudio = new Audio('src/audio/success.mp3');
 successAudio.muted = false;
 successAudio.type = 'audio/mp3';
 const failAudio = new Audio('src/audio/fail.mp3');
 failAudio.muted = false;
 failAudio.type = 'audio/mp3';
-const pointGainedAudio = new Audio('src/audio/point-gained.mp3');
-pointGainedAudio.muted = false;
-pointGainedAudio.type = 'audio/mp3';
+
+const pointGainedAudio1 = new Audio('src/audio/point-gained.mp3');
+pointGainedAudio1.muted = false;
+pointGainedAudio1.type = 'audio/mp3';
+const pointGainedAudio2 = new Audio('src/audio/point-gained-2.mp3');
+pointGainedAudio2.muted = false;
+pointGainedAudio2.type = 'audio/mp3';
+const pointGainedAudio3 = new Audio('src/audio/point-gained-3.mp3');
+pointGainedAudio3.muted = false;
+pointGainedAudio3.type = 'audio/mp3';
+const pointGainedAudio4 = new Audio('src/audio/point-gained-4.mp3');
+pointGainedAudio4.muted = false;
+pointGainedAudio4.type = 'audio/mp3';
+const pointGainedAudio5 = new Audio('src/audio/point-gained-5.mp3');
+pointGainedAudio5.muted = false;
+pointGainedAudio5.type = 'audio/mp3';
+
+const hitsAudios = [pointGainedAudio1, pointGainedAudio2, pointGainedAudio3, pointGainedAudio4, pointGainedAudio5];
 
 /**-------------------------------------------------------------------------- */
 
@@ -72,13 +93,10 @@ function generateScore () {
     let heading = '';
     let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
 
-    overlay.removeAttribute('style', `
-        visibility: hidden;
-    `);
-    overlay.setAttribute('style', `
-        visibility: visible;
-    `);
+    overlay.removeAttribute('style', `visibility: hidden;`);
+    overlay.style.visibility = 'visible';
     scoreInfo.style.display = 'block';
+    gameProgressAudio.pause();
 
     const score = new Score(today, hitCount, wordBank.length);
     
@@ -105,6 +123,8 @@ function generateScore () {
 
 // function to update the number of words the player has already matched
 function updateHits() {
+    let i = Math.floor(Math.random() * hitsAudios.length); 
+    hitsAudios[i].play();
     hits.innerText = ++hitCount;
 }
 
@@ -115,7 +135,6 @@ function compareValues (currWord, input) {
     input = input.toLowerCase().trim();
 
     if(currWord === input) {
-        pointGainedAudio.play();
         updateHits();
         focusInput();
         generateWord();
@@ -130,14 +149,11 @@ function updateTimer() {
         // stop timer on expiry
         clearInterval(timeValue);
         // time has expired, calculate player's score and reset game
-        startButton.style.display = 'block';
-        userInput.classList.add('disabled');
-        userInput.setAttribute('readonly', 'readonly');
-        timeRemaining.style.display = 'none';
         generateScore();
         resetGame();
         focusInput();
         let themeInterval = setInterval(function(){
+            gameProgressAudio.pause();
             themeAudio.play();
             clearInterval(themeInterval);
         }, 4_000);
@@ -171,10 +187,6 @@ function generateWord() {
         }
     } else {
         // player has exhausted all words so calculate their score
-        startButton.style.display = 'block';
-        userInput.classList.add('disabled');
-        userInput.setAttribute('readonly', 'readonly');
-        timeRemaining.style.display = 'none';
         generateScore();
         resetGame();
         focusInput();
@@ -187,6 +199,12 @@ function generateWord() {
   
 // function to reset game
 function resetGame() {
+    startButton.style.display = 'block';
+    userInput.classList.add('disabled');
+    userInput.setAttribute('readonly', 'readonly');
+    hint.style.visibility = 'hidden';
+    timeRemaining.style.display = 'none';
+    clock.style.display = 'inline';
     word.innerText = '';
     hits.innerText = 0;
     timer.innerText = 99;
@@ -210,7 +228,10 @@ onEvent('keyup', userInput, function() {
 // start game when start button is clicked
 onEvent('click', startButton, function() {
     themeAudio.pause();
+    gameProgressAudio.play();
+    hint.style.visibility = 'visible';
     timeRemaining.style.display = 'inline';
+    clock.style.display = 'none';
     startButton.style.display = 'none';
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
@@ -220,12 +241,8 @@ onEvent('click', startButton, function() {
 });
 
 onEvent('click', overlay, function () {
-    this.removeAttribute('style', `
-      visibility: visible;
-    `);
-    this.setAttribute('style', `
-      visibility: hidden;
-    `);
+    this.removeAttribute('style', `visibility: visible;`);
+    this.style.visibility = 'hidden';
     scoreInfo.style.display = 'none';
 });
 
