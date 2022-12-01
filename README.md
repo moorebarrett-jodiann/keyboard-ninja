@@ -85,7 +85,7 @@ Here are a few screenshots from the game:
 **Score Board**
 ![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Scoreboard")
 
-##### Find out if you the next Keyboard Ninja ####
+##### Find out if you're the next Keyboard Ninja ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
 
 
