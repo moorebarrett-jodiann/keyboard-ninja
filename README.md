@@ -87,4 +87,4 @@ Here are a few screenshots from the game:
 
 
 ###### Issues
-If you are unable to play audio in the browser, refer to this  [resource](https://www.alphr.com/fixes-sound-not-working-chrome/) for a fix
+If you are unable to play audio in the browser, refer to this  [resource](https://www.alphr.com/fixes-sound-not-working-chrome/) for a suggested fix.
