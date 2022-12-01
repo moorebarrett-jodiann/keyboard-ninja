@@ -128,6 +128,7 @@ function updateHits() {
     let i = Math.floor(Math.random() * hitsAudios.length); 
     hitsAudios[i].play();
     hits.innerText = ++hitCount;
+    hits.style.color = '#F7B538';
 }
 
 // function to compare the user input to the random word selected
