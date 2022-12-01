@@ -44,22 +44,22 @@ const scoreInfo = select('.score-info');
 const scoreDetails = select('.score-details');
 
 const typewriterAudio = new Audio('src/audio/keyboard-typing.mp3');
-typewriterAudio.muted = true;
+typewriterAudio.muted = false;
 typewriterAudio.type = 'audio/mp3';
 const swordAudio = new Audio('src/audio/sword.mp3');
-swordAudio.muted = true;
+swordAudio.muted = false;
 swordAudio.type = 'audio/mp3';
 const themeAudio = new Audio('src/audio/theme.mp3');
-themeAudio.muted = true;
+themeAudio.muted = false;
 themeAudio.type = 'audio/mp3';
 const successAudio = new Audio('src/audio/success.mp3');
-successAudio.muted = true;
+successAudio.muted = false;
 successAudio.type = 'audio/mp3';
 const failAudio = new Audio('src/audio/fail.mp3');
-failAudio.muted = true;
+failAudio.muted = false;
 failAudio.type = 'audio/mp3';
 const pointGainedAudio = new Audio('src/audio/point-gained.mp3');
-pointGainedAudio.muted = true;
+pointGainedAudio.muted = false;
 pointGainedAudio.type = 'audio/mp3';
 
 /**-------------------------------------------------------------------------- */
