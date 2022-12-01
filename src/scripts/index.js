@@ -242,6 +242,7 @@ onEvent('load', window, () => {
     
     let themeInterval = setInterval(function(){
         themeAudio.play();
+        startButton.style.display = 'block';
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
         clearInterval(themeInterval);

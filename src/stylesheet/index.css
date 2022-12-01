@@ -201,6 +201,7 @@ body{
 
 .center .game-container .game-details .input-controls button.start {
     background-color: var(--app-green);
+    display: none;
 }
 
 .center .game-container .game-details .input-controls button.restart {
