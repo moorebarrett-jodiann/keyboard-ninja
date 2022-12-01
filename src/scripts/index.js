@@ -171,7 +171,17 @@ function generateWord() {
         }
     } else {
         // player has exhausted all words so calculate their score
+        startButton.style.display = 'block';
+        userInput.classList.add('disabled');
+        userInput.setAttribute('readonly', 'readonly');
+        timer.innerText = 99;
         generateScore();
+        resetGame();
+        focusInput();
+        let themeInterval = setInterval(function(){
+            themeAudio.play();
+            clearInterval(themeInterval);
+        }, 4_000);
     }
 }
   
