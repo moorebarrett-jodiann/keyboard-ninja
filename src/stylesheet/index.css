@@ -144,6 +144,7 @@ body{
 .center .game-container .game-details .word-container .hits {
     text-align: right;
     padding: 0px 20px;
+    visibility: hidden;
 }
 
 .center .game-container .game-details .word-container .hits p {

@@ -11,6 +11,7 @@ import Score from './Score.js';
 
 /**--------------------------------- Data ----------------------------------- */
 const hits = select('.hits span');
+const hitsBlock = select('.hits');
 let hitCount = 0;
 const timer = select('.timer span');
 let timeValue = 0;
@@ -98,6 +99,7 @@ function generateScore () {
     scoreInfo.style.display = 'block';
     gameProgressAudio.pause();
 
+    // create score object to show player results
     const score = new Score(today, hitCount, wordBank.length);
     
     if(score.percentage >= 45) {
@@ -202,6 +204,7 @@ function resetGame() {
     startButton.style.display = 'block';
     userInput.classList.add('disabled');
     userInput.setAttribute('readonly', 'readonly');
+    hitsBlock.style.visibility = 'hidden';
     hint.style.visibility = 'hidden';
     timeRemaining.style.display = 'none';
     clock.style.display = 'inline';
@@ -229,6 +232,7 @@ onEvent('keyup', userInput, function() {
 onEvent('click', startButton, function() {
     themeAudio.pause();
     gameProgressAudio.play();
+    hitsBlock.style.visibility = 'visible';
     hint.style.visibility = 'visible';
     timeRemaining.style.display = 'inline';
     clock.style.display = 'none';
