@@ -74,7 +74,7 @@ body{
 
 .center .game-container .heading p.bungee {
     font-family: 'Bungee', cursive;
-    font-size: 50px;
+    font-size: 60px;
     overflow: hidden;
     border-right: 1px solid #ff833cbf;
     white-space: nowrap;
@@ -85,7 +85,7 @@ body{
 
 .center .game-container .heading p.merienda {
     font-family: 'Merienda', cursive;
-    font-size: 60px;
+    font-size: 70px;
     margin-right: 2px;
     position: relative;
     visibility: hidden;
@@ -96,6 +96,7 @@ body{
     bottom: 50%;
     visibility: hidden;
     color: var(--app-light-text-color);
+    font-size: 25px;
 }
 
 .center .game-container .game-details {
