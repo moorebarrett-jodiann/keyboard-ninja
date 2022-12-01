@@ -269,6 +269,5 @@ onEvent('load', window, () => {
         clearInterval(themeInterval);
     }, 7_000);
     
-    resetGame();
 });
 

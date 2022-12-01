@@ -2,7 +2,73 @@
  
 - [Click for Demo](https://moorebarrett-jodiann.github.io/keyboard-ninja/)
 - [Description](#description)
+- [Usage](#usage)
+- [Requirements](#requirements)
+- [Tests](#tests)
+- [How to Play](#instructions)
 
 ## Description
 
 Fun, interactive, speed typing game built using HTML, CSS, EcmaScript (ES) modules and [lite-server](https://www.npmjs.com/package/light-server)
+
+## Usage
+
+Set the **type** attribute on the HTML markup to **'module'**:
+
+```html
+<script src="...path/index.js" type="module"></script>
+```
+
+Initialize package.json file setup:
+
+```sh
+npm init -y
+```
+
+Install the **lite-server** package with [npm](https://www.npmjs.org/) and create a local dev environment:
+
+```sh
+npm install lite-server --save-dev
+```
+
+In the **package.json** file created, update the 'scripts' property by setting the **'dev'** environment to **lite-server**:
+
+```json
+{
+  "name": "es-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
+```
+
+## Requirements
+
+Dependencies:
+- [Node.js](https://nodejs.org/)
+
+## Tests
+
+To run the application in the browser:
+
+- run `npm run dev` in the terminal in the root path of the repository package.
+
+## Instructions
+
+1. Press ```Start``` button to begin
+2. In the white box type the word you see in the red box above it
+3. If you spell the word correctly, a new word will be displayed
+4. Get as many words typed before the timer runs out
+
+#### Find out if you the next Keyboard Ninja ####
+### 😄😄 HAVE FUN!! 😄😄 ###

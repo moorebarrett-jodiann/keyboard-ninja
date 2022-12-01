@@ -78,7 +78,7 @@ body{
     border-right: 1px solid #ff833cbf;
     white-space: nowrap;
     margin: 0 auto;
-    animation: typing 6s steps(30, end);
+    animation: typing 6s steps(30, end), blink-caret .75s step-end infinite;
     color: var(--app-orange);
 }
 
@@ -190,7 +190,7 @@ body{
     right: 5%;
     bottom: 10%;
     height: 50px;
-    display: block;
+    display: none;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
     font-size: 20px;
@@ -350,4 +350,9 @@ body{
     40% { box-shadow: 0 0 20px var(--app-yellow); }
     60% { box-shadow: 0 0 20px var(--app-yellow); }
     100% { box-shadow: 0 0 -10px var(--app-yellow); }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--app-orange); }
 }
