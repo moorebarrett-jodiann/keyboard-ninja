@@ -76,11 +76,11 @@ To run the application in the browser:
 
 Here are a few screenshots from the game:
 
-![Splash Screen](./src/images/game-screenshots/scoreboard.png?raw=true "Game Splash Screen")
+![Splash Screen](./src/images/game-screenshots/splash-screen.png?raw=true "Game Splash Screen")
 
 ![Game](./src/images/game-screenshots/game-in-progress-with-timer-countdown.png?raw=true "Game in Progress")
 
-![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Game in Progress")
+![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Scoreboard")
 
 ##### Find out if you the next Keyboard Ninja ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
