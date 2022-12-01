@@ -7,6 +7,7 @@
 - [Tests](#tests)
 - [How to Play](#instructions)
 - [Screenshots](#screenshots)
+- [Issues](#issues)
 
 ## Description
 
@@ -81,6 +82,10 @@ Here are a few screenshots from the game:
 
 ![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Game in Progress")
 
-
 ##### Find out if you the next Keyboard Ninja ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
+
+
+###### Issues
+
+If you are unable to play audio in the browser, refer to this  [resource](https://www.alphr.com/fixes-sound-not-working-chrome/) for a fix
