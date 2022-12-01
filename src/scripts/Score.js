@@ -18,7 +18,7 @@ class Score {
     }
 
     get date() {
-        return this.#date.toDateString();
+        return this.#date;
     }
     
     get hits() {

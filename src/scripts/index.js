@@ -19,6 +19,7 @@ const userInput = select ('.user-input');
 const startButton = select('.start');
 const ninjaHeading = select('.center .game-container .heading p.merienda');
 const ninjaSubheading = select('.center .game-container .heading h3');
+const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
 
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -42,15 +43,28 @@ const overlay = select('.overlay');
 const scoreInfo = select('.score-info');
 const scoreDetails = select('.score-details');
 
+const typewriterAudio = new Audio('src/audio/keyboard-typing.mp3');
+typewriterAudio.type = 'audio/mp3';
+const swordAudio = new Audio('src/audio/sword.mp3');
+swordAudio.type = 'audio/mp3';
+const themeAudio = new Audio('src/audio/theme.mp3');
+themeAudio.type = 'audio/mp3';
+const successAudio = new Audio('src/audio/success.mp3');
+successAudio.type = 'audio/mp3';
+const failAudio = new Audio('src/audio/fail.mp3');
+failAudio.type = 'audio/mp3';
+const pointGainedAudio = new Audio('src/audio/point-gained.mp3');
+failAudio.pointGainedAudio = 'audio/mp3';
+
 /**-------------------------------------------------------------------------- */
 
 /**---------------------Game Functions and Events---------------------------- */
-
 
 //function to generate score
 function generateScore () {
 
     let heading = '';
+    let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
 
     overlay.removeAttribute('style', `
         visibility: hidden;
@@ -58,21 +72,28 @@ function generateScore () {
     overlay.setAttribute('style', `
         visibility: visible;
     `);
-    profileInfo.style.display = 'block';
+    scoreInfo.style.display = 'block';
 
-    const score = new Score(new Date(), hits, wordBank.length);
+    const score = new Score(today, hitCount, wordBank.length);
     
-    heading = `<h2><span class="fail"></span>Better Luck Next Time</h2>`;
-    if(score.percentage >= 70) heading = `<h2><span class="pass"></span>Awesome Job!</h2>`;
-    if(score.percentage > 40 && score.percentage < 70) heading = `<h2><span class="average"></span>Good Job!</h2>`;
+    if(score.percentage >= 45) {
+        heading = `<h2 class="success">Awesome Job!</h2>`;
+        successAudio.play();
+    } else if(score.percentage > 25 && score.percentage < 45) {
+        heading = `<h2 class="pass">Good Job!</h2>`;
+        successAudio.play();
+    } else {
+        failAudio.play();
+        heading = `<h2 class="fail">Better Luck Next Time</h2>`;
+    }
 
     scoreDetails.innerHTML = `
-    ${heading}
-    <div class="results">
-        <p>You got ${score.hits} out of ${wordBank.length} words</p>
-        <p>Your Score: ${score.percentage}%</p>
-        <p>On: ${score.date}%</p>
-    </div>
+        ${heading}
+        <div class="results">
+            <p class="score">Your Score: <span>${Math.floor(parseFloat(score.percentage))}%</span></p>
+            <p class="out-of">You got ${score.hits} out of ${wordBank.length} words</p>
+            <p class="date">${score.date}</p>
+        </div>
     `;
 }
 
@@ -84,10 +105,11 @@ function updateHits() {
 // function to compare the user input to the random word selected
 function compareValues (currWord, input) {
     // clean strings for comparison
-    currWord.toLowerCase().trim();
-    input.toLowerCase().trim();
+    currWord = currWord.toLowerCase().trim();
+    input = input.toLowerCase().trim();
 
     if(currWord === input) {
+        pointGainedAudio.play();
         updateHits();
         focusInput();
         generateWord();
@@ -96,16 +118,23 @@ function compareValues (currWord, input) {
 
 // start timer
 function updateTimer() {
-    let timeleft = 10;
+    let timeleft = 99;
     timeValue = setInterval(function(){
     if(timeleft <= 0){
         // stop timer on expiry
         clearInterval(timeValue);
         // time has expired, calculate player's score and reset game
-        timer.innerText = 0;
+        startButton.style.display = 'block';
+        userInput.classList.add('disabled');
+        userInput.setAttribute('readonly', 'readonly');
+        timer.innerText = 99;
         generateScore();
         resetGame();
         focusInput();
+        let themeInterval = setInterval(function(){
+            themeAudio.play();
+            clearInterval(themeInterval);
+        }, 4_000);
     }
     timer.innerText = timeleft;
     timeleft -= 1;
@@ -144,7 +173,8 @@ function generateWord() {
 function resetGame() {
     word.innerText = '';
     hits.innerText = 0;
-    timer.innerText = 10;
+    timer.innerText = 99;
+    hitCount = 0;
     focusInput();
 }
 
@@ -163,7 +193,11 @@ onEvent('keyup', userInput, function() {
 
 // start game when start button is clicked
 onEvent('click', startButton, function() {
+    themeAudio.pause();
+    timeRemaining.style.display = 'inline';
     startButton.style.display = 'none';
+    userInput.classList.remove('disabled');
+    userInput.removeAttribute('readonly');
     focusInput();
     updateTimer();
     generateWord();
@@ -181,16 +215,22 @@ onEvent('click', overlay, function () {
 
 // when page is reloaded set input focus
 onEvent('load', window, () => {
-    setInterval(function(){
+
+    typewriterAudio.play();
+    let swordInterval = setInterval(function(){
+        swordAudio.play();
         ninjaHeading.style.visibility = 'visible';
         ninjaHeading.style.animation = 'fly-in 1s 1';
-    }, 3_000);
+        clearInterval(swordInterval);
+    }, 4_000);
     
-    setInterval(function(){
+    let themeInterval = setInterval(function(){
+        themeAudio.play();
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
-    }, 4_500);
-
+        clearInterval(themeInterval);
+    }, 7_000);
+    
     resetGame();
 });
 
