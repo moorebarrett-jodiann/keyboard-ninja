@@ -12,30 +12,46 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;500;600;700;800&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="src/stylesheet/index.css" media="all"/>
         <script src="src/scripts/index.js" type="module"></script>
         <title>Keyboard Ninja</title>
     </head>
     <body>
         <main>
+            <div class="overlay">
+                <div class="container flexbox">
+                    <div class="score-info">
+                        <div class="score-details">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="center">
                     <div class="game-container">
-                        <h1><span class="bungee">Keyboard</span> <span class="merienda">Ninja</span></h1>
-                        <div class="stats flexbox">
-                            <div class="hits"><p>Hits : <span>0</span></p></div>
-                            <div class="score"><p>Score : <span>0</span></p></div>
-                            <div class="timer"><p>Time Remaining : <span>100</span></p></div>
+                        <div class="heading">
+                            <div class="flexbox">
+                                <p class="bungee">Keyboard</p>
+                                <p class="merienda">Ninja</p>
+                            </div>
+                            <h3>How fast can you type?</h3>
                         </div>
-                        <div class="word-container">
-                            <p class="word"></p>
-                        </div>
-                        <div class="input-controls">
-                            <label for="user-input">Hint: Type the word above as fast as you can.</label>
-                            <input type="text" id="user-input" class="user-input">
-                            <button class="btn start">Start Game</button>
-                            <button class="btn stop">Stop Game</button>
+                        <div class="game-details">
+                            <div class="stats">
+                                <div class="timer"><p><i class="fa-solid fa-clock"></i> <span>10</span></p></div>
+                            </div>
+                            <div class="word-container">
+                                <p class="word"></p>
+                                <div class="hits"><p>Hits : <span>0</span></p></div>
+                            </div>
+                            <div class="input-controls">
+                                <label for="user-input">Hint: Type the word above as fast as you can.</label>
+                                <input type="text" id="user-input" class="user-input">
+                                <button class="btn start">Start Game</button>
+                                <button class="btn restart"><i class="fa-solid fa-arrows-rotate"></i> Restart</button>
+                            </div>
                         </div>
                     </div>
                 </div>

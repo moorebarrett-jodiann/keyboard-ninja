@@ -16,10 +16,10 @@ function select(selector, parent = document) {
   return parent.querySelector(selector);
 }
 
-function print(arg) {
-  console.log(arg);
-}
+// function print(arg) {
+//   console.log(arg);
+// }
 
 /**--------------------------------------------------------------------------- */
 
-export { select, onEvent, print };
+export { select, onEvent };

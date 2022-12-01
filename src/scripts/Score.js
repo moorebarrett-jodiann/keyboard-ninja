@@ -18,7 +18,7 @@ class Score {
     }
 
     get date() {
-        return this.#date;
+        return this.#date.toDateString();
     }
     
     get hits() {
@@ -26,7 +26,7 @@ class Score {
     }
     
     get percentage() {
-        return this.#percentage;
+        return (this.#hits / this.#percentage) * 100;
     }
 }
 

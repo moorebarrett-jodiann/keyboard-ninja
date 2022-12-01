@@ -29,9 +29,9 @@
     --app-main-font-size: 18px;
     --app-secondary-font-size: 14px;
 }
-    
-body {
-    background-color: var(--app-dark-bg);
+
+body{
+    background: var(--app-dark-bg) url("../images/bg.jpg") center center / cover no-repeat;
 }
 
 .container {
@@ -42,7 +42,7 @@ body {
 /**************************************************/
 /*****       Main                            ******/
 /**************************************************/
-h1, h2, h3, a, p, label {
+h1, h2, h3, a {
     color: rgb(244, 246, 248);
 }
 
@@ -59,111 +59,136 @@ h2 {
 .flexbox {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .center {
     height: 100vh;
-    display: grid;
-    place-items: center;
+    /* display: grid;
+    place-items: center; */
 }
 
 .center .game-container {
-    width: 80%;
+    width: 60%;
     display: grid;
     place-items: center;
+    position: relative;
+    top: 3%;
 }
 
-.center .game-container span.bungee {
-    font-family: 'Bungee', cursive;
-    font-size: 40px;
-}
-
-.center .game-container span.merienda {
-    font-family: 'Merienda', cursive;
-    font-size: 50px;
-}
-
-.center .game-container h1 {
-    margin: 20px 0px;
-}
-
-.center .game-container .stats {
+.center .game-container .heading {
     width: 100%;
-    background-color: rgba(12, 14, 20, 0.8);
-    border-radius: 4px;
+    display: grid;
+    place-items: center;
     margin-bottom: 20px;
 }
 
-.center .game-container .stats .hits {
-    padding: 20px;
-    text-align: left;
-    font-size: 20px;
+.center .game-container .heading p.bungee {
+    font-family: 'Bungee', cursive;
+    font-size: 40px;
+    overflow: hidden;
+    border-right: 1px solid #ff833cbf;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: 
+        typing 4s steps(30, end);
 }
 
-.center .game-container .stats .score {
-    padding: 20px;
-    text-align: center;
-    font-size: 20px;
+.center .game-container .heading p.merienda {
+    font-family: 'Merienda', cursive;
+    font-size: 50px;
+    margin-right: 2px;
+    position: relative;
+    visibility: hidden;
 }
 
-.center .game-container .stats .timer {
-    padding: 20px;
-    text-align: right;
-    font-size: 20px;
+.center .game-container .heading h3 {
+    position: relative;
+    bottom: 50%;
+    visibility: hidden;
 }
 
-.center .game-container .word-container {
-    width: 100%;
+.center .game-container .game-details {
+    background-color: rgba(155, 120, 116, 0.496);
+    border-radius: 50px;
     padding: 20px;
-    background-color: rgba(12, 14, 20, 0.8);
-    border-radius: 4px;
-    font-size: 17px;
-    font-weight: 400;
-    color: var(--app-white);
-    text-align: center;
     display: grid;
     place-items: center;
 }
 
-.center .game-container .word-container p {
-    height: 150px;
-    font-size: 100px;
+.center .game-container .game-details .stats {
+    display: grid;
+    place-items: center;
+}
+
+.center .game-container .game-details .stats .timer {
+    padding: 20px;
+    font-size: 55px;
+    color: #F7B538;
+}
+
+.center .game-container .game-details .word-container {
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(12, 14, 20, 0.8);
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--app-white);
+}
+
+.center .game-container .game-details .word-container p.word {
+    height: 60px;
+    font-size: 70px;
     font-weight: 700;
     color: var(--app-white);
+    text-align: center;
     user-select: none;
 }
 
-.center .game-container .input-controls {
+.center .game-container .game-details .word-container .hits {
+    text-align: right;
+}
+
+.center .game-container .game-details .word-container .hits p {
+    color: var(--app-light-text-color);
+}
+
+
+.center .game-container .game-details .input-controls {
     width: 100%;
-    padding: 20px;
     margin-top: 20px;
     display: grid;
     place-items: center;
 }
 
-.center .game-container .input-controls label {
+.center .game-container .game-details .input-controls label {
     display: block;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 17px;
+    color: rgba(244, 246, 248, 0.34);
 }
 
-.center .game-container .input-controls input {
+.center .game-container .game-details .input-controls input {
     width: 80%;
     height: 100px;
     display: block;
     margin-bottom: 20px;
     padding: 0 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(224, 224, 226, 0.96);
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
     font-size: 30px;
     font-weight: 500;
-    color: var(--app-white);
+    color: #1C1F33;
     text-align: center;
 }
 
-.center .game-container .input-controls button {
+.center .game-container .game-details .input-controls .btn {
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
     height: 50px;
     display: block;
     border-radius: 50px;
@@ -176,12 +201,113 @@ h2 {
     padding: 0px 20px;
 }
 
-.center .game-container .input-controls button.start {
+.center .game-container .game-details .input-controls button.start {
     background-color: var(--app-green);
 }
 
-.center .game-container .input-controls button.stop {
+.center .game-container .game-details .input-controls button.restart {
     display: none;
-    background-color: var(--app-red);
+    background-color: var(--app-orange);
 }
 
+/**************************************************/
+/*****            Score Board                ******/
+/**************************************************/
+
+.overlay {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(26, 29, 40, 0.5);
+    z-index: 10;
+    visibility: hidden;
+}
+
+.overlay .flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-info {
+    width: 500px;
+    background-color: var(--app-white);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
+    border-radius: 50px;
+    z-index: 100;
+    animation: appearDown 0.25s ease-out;
+    display: none;
+}
+
+.score-info .score-details {
+    padding: 20px 10px;
+    display: grid;
+    place-items: center;
+}
+
+.score-info .score-details h2 {
+    font-size: 30px;
+}
+
+.score-info .score-details h2.fail {
+    color: var(--app-red);
+}
+
+.score-info .score-details h2.pass {
+    color: var(--app-green);
+}
+
+.score-info .score-details h2.average {
+    color: var(--app-orange);
+}
+
+/**************************************************/
+/*****       Animations                      ******/
+/**************************************************/
+
+@keyframes appearUp {
+    from {
+        opacity: 0;
+        transform: translate(0px, 10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes appearDown {
+    from {
+        opacity: 0;
+        transform: translate(0px, -10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes typing {
+    from { 
+        width: 0; 
+    }
+    to { 
+        width: 100%;
+    }
+}
+
+@keyframes fly-in {
+    from {
+        opacity: 0;
+        transform: translate(100%, 0px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
