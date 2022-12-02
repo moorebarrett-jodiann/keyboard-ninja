@@ -13,17 +13,6 @@
 
 Fun, interactive, speed typing game built using HTML, CSS, EcmaScript (ES) modules and [lite-server](https://www.npmjs.com/package/light-server)
 
-## Instructions
-
-1. Press ```Start``` button to begin
-2. In the white box type the word you see in the red box above it
-3. If you spell the word correctly, a new word will be displayed
-4. Get as many words typed before the timer runs out
-
-## Screenshots
-
-Here are a few screenshots from the game:
-
 **Splash Screen**
 ![Splash Screen](./src/images/game-screenshots/splash-screen.png?raw=true "Game Splash Screen")
 
@@ -33,12 +22,19 @@ Here are a few screenshots from the game:
 **Score Board**
 ![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Scoreboard")
 
+## Instructions
+
+1. Press ```Start``` button to begin
+2. In the white box type the word you see in the red box above it
+3. If you spell the word correctly, a new word will be displayed
+4. Get as many words typed before the timer runs out
+
 ##### Are you the next Keyboard Ninja? ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
 
 -----------------------------------------------------------------
 
-## Usage
+### Usage
 
 Set the **type** attribute on the HTML markup to **'module'**:
 
@@ -79,17 +75,17 @@ In the **package.json** file created, update the 'scripts' property by setting t
 }
 ```
 
-## Requirements
+### Requirements
 
 Dependencies:
 - [Node.js](https://nodejs.org/)
 
-## Tests
+### Tests
 
 To run the application in the browser:
 
 - run `npm run dev` in the terminal in the root path of the repository package.
 
 
-##### Issues
-If you are unable to play audio in the browser, refer to this  [resource](https://www.alphr.com/fixes-sound-not-working-chrome/) for a suggested fix.
+### Issues
+In the event of audio issues in the browser, refer to this  [resource](https://www.alphr.com/fixes-sound-not-working-chrome/) for a suggested fix.
