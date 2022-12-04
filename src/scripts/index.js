@@ -18,8 +18,8 @@ let timeValue = 0;
 const word = select ('.word');
 const userInput = select ('.user-input');
 const startButton = select('.start');
-const ninjaHeading = select('.center .game-container .heading p.merienda');
-const ninjaSubheading = select('.center .game-container .heading h3');
+const ninjaHeading = select('.center .heading p.merienda');
+const ninjaSubheading = select('.center .heading h3');
 const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
 const clock = select('.center .game-container .game-details .stats .timer p i');
 const hint = select('.hint');
@@ -128,7 +128,7 @@ function updateHits() {
     let i = Math.floor(Math.random() * hitsAudios.length); 
     hitsAudios[i].play();
     hits.innerText = ++hitCount;
-    hits.style.color = '#F7B538';
+    hits.style.color = '#941c1c';
 }
 
 // function to compare the user input to the random word selected
@@ -136,11 +136,29 @@ function compareValues (currWord, input) {
     // clean strings for comparison
     currWord = currWord.toLowerCase().trim();
     input = input.toLowerCase().trim();
+    
+    let inputLength = input.length;
+    let currentWordMatched = currWord.slice(0, inputLength);
+    let currentWordUnmatched = currWord.slice(inputLength);
+    let string = '';
 
-    if(currWord === input) {
-        updateHits();
-        focusInput();
-        generateWord();
+    // highlight each letter spelt in the correct order
+    if(input === currentWordMatched) {
+        for(let i = 0; i < inputLength; i++) {
+            string += currentWordMatched[i].replace(currentWordMatched[i],`<span class="matched">${currentWordMatched[i]}</span>`);
+        }
+        string += currentWordUnmatched;
+    }
+    
+    if(string) {
+        word.innerHTML = string;
+        if(currWord === input) {
+            updateHits();
+            setTimeout(() => { 
+                focusInput();
+                generateWord();
+            }, 100);
+        }
     }
 }
 
@@ -157,7 +175,7 @@ function updateTimer() {
         focusInput();
         let themeInterval = setInterval(function(){
             gameProgressAudio.pause();
-            themeAudio.play();
+            // themeAudio.play();
             clearInterval(themeInterval);
         }, 4_000);
     }
@@ -202,7 +220,7 @@ function generateWord() {
   
 // function to reset game
 function resetGame() {
-    startButton.style.display = 'block';
+    startButton.style.visibility = 'visible';
     userInput.classList.add('disabled');
     userInput.setAttribute('readonly', 'readonly');
     hitsBlock.style.visibility = 'hidden';
@@ -223,6 +241,12 @@ function focusInput() {
     userInput.scrollIntoView();
 }
 
+// function to control how long audio files play
+function playAudio(audioName, timeInMilisec){
+    audioName.play();
+    setTimeout(() => { audioName.pause(); }, timeInMilisec);
+}
+
 // compare the player input with the current word selected from the bank
 onEvent('keyup', userInput, function() {
     compareValues(currentWord, userInput.value);
@@ -231,13 +255,14 @@ onEvent('keyup', userInput, function() {
 
 // start game when start button is clicked
 onEvent('click', startButton, function() {
-    themeAudio.pause();
+    // themeAudio.pause();
     gameProgressAudio.play();
+    gameProgressAudio.volume = 0.03;
     hitsBlock.style.visibility = 'visible';
     hint.style.visibility = 'visible';
     timeRemaining.style.display = 'inline';
     clock.style.display = 'none';
-    startButton.style.display = 'none';
+    startButton.removeAttribute('style', `visibility: visible;`);
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
     focusInput();
@@ -254,21 +279,23 @@ onEvent('click', overlay, function () {
 // when page is reloaded set input focus
 onEvent('load', window, () => {
 
-    typewriterAudio.play();
+    playAudio(typewriterAudio, 2_500);
     let swordInterval = setInterval(function(){
-        swordAudio.play();
+        playAudio(swordAudio, 4_000);
         ninjaHeading.style.visibility = 'visible';
         ninjaHeading.style.animation = 'fly-in 1s 1';
         clearInterval(swordInterval);
     }, 4_000);
     
     let themeInterval = setInterval(function(){
-        themeAudio.play();
-        startButton.style.display = 'block';
+        // themeAudio.play();
+        startButton.style.visibility = 'visible';
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
         clearInterval(themeInterval);
     }, 7_000);
+
+    focusInput();
     
 });
 
