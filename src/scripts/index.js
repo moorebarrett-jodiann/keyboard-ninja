@@ -98,6 +98,7 @@ function generateScore () {
     overlay.style.visibility = 'visible';
     scoreInfo.style.display = 'block';
     gameProgressAudio.pause();
+    gameProgressAudio.currentTime = 0;
 
     // create score object to show player results
     const score = new Score(today, hitCount, wordBank.length);
@@ -154,10 +155,10 @@ function compareValues (currWord, input) {
         word.innerHTML = string;
         if(currWord === input) {
             updateHits();
-            setTimeout(() => { 
+            // setTimeout(() => { 
                 focusInput();
                 generateWord();
-            }, 100);
+            // }, 100);
         }
     }
 }
@@ -175,7 +176,9 @@ function updateTimer() {
         focusInput();
         let themeInterval = setInterval(function(){
             gameProgressAudio.pause();
-            // themeAudio.play();
+            gameProgressAudio.currentTime = 0;
+            themeAudio.currentTime = 0;
+            themeAudio.play();
             clearInterval(themeInterval);
         }, 4_000);
     }
@@ -193,7 +196,7 @@ function shuffle(array) {
 function generateWord() {
     if(shuffledWordBank.length !== 0) {
         let originalLength = shuffledWordBank.length;
-    
+
         if(originalLength.length !== 0) {
             // grab a random index in the array
             let i = Math.floor(Math.random() * originalLength); 
@@ -244,7 +247,10 @@ function focusInput() {
 // function to control how long audio files play
 function playAudio(audioName, timeInMilisec){
     audioName.play();
-    setTimeout(() => { audioName.pause(); }, timeInMilisec);
+    setTimeout(() => { 
+        audioName.pause(); 
+        audioName.currentTime = 0; 
+    }, timeInMilisec);
 }
 
 // compare the player input with the current word selected from the bank
@@ -255,9 +261,9 @@ onEvent('keyup', userInput, function() {
 
 // start game when start button is clicked
 onEvent('click', startButton, function() {
-    // themeAudio.pause();
+    themeAudio.currentTime = 0;
+    themeAudio.pause();
     gameProgressAudio.play();
-    gameProgressAudio.volume = 0.03;
     hitsBlock.style.visibility = 'visible';
     hint.style.visibility = 'visible';
     timeRemaining.style.display = 'inline';
@@ -278,22 +284,23 @@ onEvent('click', overlay, function () {
 
 // when page is reloaded set input focus
 onEvent('load', window, () => {
-
+    
     playAudio(typewriterAudio, 2_500);
     let swordInterval = setInterval(function(){
         playAudio(swordAudio, 4_000);
         ninjaHeading.style.visibility = 'visible';
         ninjaHeading.style.animation = 'fly-in 1s 1';
         clearInterval(swordInterval);
-    }, 4_000);
+    }, 2_400);
     
     let themeInterval = setInterval(function(){
-        // themeAudio.play();
+        themeAudio.currentTime = 0;
+        themeAudio.play();
         startButton.style.visibility = 'visible';
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
         clearInterval(themeInterval);
-    }, 7_000);
+    }, 5_000);
 
     focusInput();
     

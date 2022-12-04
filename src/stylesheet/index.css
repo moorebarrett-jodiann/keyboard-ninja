@@ -302,8 +302,8 @@ body{
         padding: 0px 20px;
         width: 100px;
         height: 100px;
-        bottom: 75%;
-        left: 90%;
+        bottom: 76%;
+        left: 91%;
     }
 
     .center .game-container .game-details .word-container .hits p {
@@ -332,23 +332,23 @@ body{
 /* flex font sizes with screen width 801px and down */
 @media (max-width: 800px) {
     .center .game-container .game-details .word-container .hits {
-        width: 60px;
-        height: 60px;
-        bottom: 70%;
-        left: 85%;
+        width: 100px;
+        height: 100px;
+        bottom: 65%;
+        left: 87%;
     }
 
     .center .game-container .game-details .word-container .hits p {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .center .game-container .game-details .word-container p.word {
-        font-size: 55px;        
+        font-size: 50px;        
         height: 80px;
     }
 
     .center .game-container .game-details .input-controls input {
-        font-size: 45px;
+        font-size: 40px;
     }
 
     .center .game-container .game-details .btn {
@@ -359,6 +359,21 @@ body{
 }
 
 @media (max-width: 480px) {
+    .center .game-container .game-details .stats .timer {
+        font-size: 80px;
+    }
+
+    .center .game-container .game-details .word-container .hits {
+        width: 60px;
+        height: 60px;
+        bottom: 70%;
+        left: 85%;
+    }
+
+    .center .game-container .game-details .word-container .hits p {
+        font-size: 15px;
+    }
+
     .center .game-container .game-details .btn {
         width: 100%;
         font-size: 25px;
