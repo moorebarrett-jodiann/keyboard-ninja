@@ -257,6 +257,17 @@ body{
     text-align: center;
 }
 
+.center .game-container .game-details .word-container .hits .plus-one {
+    color: #33ab4e;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: fade-in-up;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+
 .center .game-container .game-details .input-controls {
     width: 100%;
     margin-top: 20px;
@@ -532,4 +543,16 @@ body{
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: var(--app-orange); }
+}
+
+@keyframes fade-in-up {
+    0%,
+    10% {
+      top: 50%;
+      opacity: 1;
+    }
+    100% {
+      top: -100%;
+      opacity: 0;
+    }
 }

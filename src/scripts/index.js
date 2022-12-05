@@ -11,6 +11,7 @@ import Score from './Score.js';
 
 /**--------------------------------- Data ----------------------------------- */
 const hits = select('.hits span');
+const plusOne = select('.hits span.plus-one');
 const hitsBlock = select('.hits');
 let hitCount = 0;
 const timer = select('.timer span');
@@ -127,9 +128,20 @@ function generateScore () {
 // function to update the number of words the player has already matched
 function updateHits() {
     let i = Math.floor(Math.random() * hitsAudios.length); 
-    hitsAudios[i].play();
+    hitsAudios[i].play();    
     hits.innerText = ++hitCount;
     hits.style.color = '#941c1c';
+
+    // add animated score incrementor
+    hits.appendChild(plusOne);
+    plusOne.style.display = 'inline';
+    plusOne.innerText = '+1';
+    let addPlus = setInterval(function(){
+        setTimeout(function() {
+            plusOne.style.display = 'none';
+            clearInterval(addPlus);
+        }, 2000);
+    });
 }
 
 // function to compare the user input to the random word selected
