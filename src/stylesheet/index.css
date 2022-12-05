@@ -172,10 +172,6 @@ body{
         width: calc(50% - 10px);
     }
 
-    .center .game-container .game-details .row .card + .card {
-        margin-left: 40px;
-    }
-
     .center .game-container .game-details .row .card h3 {
         font-size: 20px;
     }
@@ -186,10 +182,6 @@ body{
     .center .game-container .game-details .row .card {
         width: 100%;
         text-align: center;
-    }
-
-    .center .game-container .game-details .row .card + .card {
-        margin-top: 20px;
     }
 
     .center .game-container .game-details .row .card h3 {
