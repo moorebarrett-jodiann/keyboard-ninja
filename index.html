@@ -18,45 +18,49 @@
         <title>Keyboard Ninja</title>
     </head>
     <body>
-        <main>            
+        <main>   
             <div class="container">
                 <div class="center">
-                    <div class="heading">
-                        <div class="flexbox">
-                            <p class="bungee">Keyboard</p>
-                            <p class="merienda">Ninja</p>
+                    <div class="wrapper">
+                        <div class="leaderboard-modal gold"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="heading">
+                            <div class="flexbox">
+                                <p class="bungee">Keyboard</p>
+                                <p class="merienda">Ninja</p>
+                            </div>
+                            <h3>How fast can you type?</h3>
                         </div>
-                        <h3>How fast can you type?</h3>
-                    </div>
-                    <div class="game-container">
-                        <div class="game-details flexbox">
-                            <div class="row">
-                                <div class="card">
-                                    <div class="stats">
-                                        <div class="timer"><p><i class="fa-solid fa-clock"></i> <span>99</span></p></div>
-                                    </div>
-                                    <div class="word-container">
-                                        <p class="word"></p>
-                                        <div class="hits"><p>Hits<br/><span>0</span><span class="plus-one"></span></p></div>
-                                    </div>
-                                    <div class="input-controls">
-                                        <label for="user-input" class="hint">Hint: Type the word above as fast as you can.</label>
-                                        <input type="text" id="user-input" class="user-input disabled" readonly>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="overlay">
-                                        <div class="container flexbox">
-                                            <div class="score-info">
-                                                <div class="score-details">
-                        
-                                                </div>
-                                            </div>
+                        <div class="game-container">
+                            <div class="game-details flexbox">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="stats">
+                                            <div class="timer"><p><i class="fa-solid fa-clock"></i> <span>99</span></p></div>
+                                        </div>
+                                        <div class="word-container">
+                                            <p class="word"></p>
+                                            <div class="hits"><p>Hits<br/><span>0</span><span class="plus-one"></span></p></div>
+                                        </div>
+                                        <div class="input-controls">
+                                            <label for="user-input" class="hint">Hint: Type the word above as fast as you can.</label>
+                                            <input type="text" id="user-input" class="user-input disabled" readonly>
                                         </div>
                                     </div>
-                                    <button class="btn start button-glow">Start Game</button>
+                                    <div class="card">
+                                        <div class="leaderboard">
+
+                                        </div>
+                                        <button class="btn start button-glow">Start Game</button>
+                                    </div>
                                 </div>
                             </div>
+                            <dialog>
+                                <div class="score-info">
+                                    <div class="score-details">
+            
+                                    </div>
+                                </div>
+                            </dialog>
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,9 @@ const ninjaSubheading = select('.center .heading h3');
 const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
 const clock = select('.center .game-container .game-details .stats .timer p i');
 const hint = select('.hint');
+let mainVolume = 0.07;
+let effectVolume = 0.08;
+const dialog = select('dialog');
 
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -43,9 +46,8 @@ const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'buildin
 let shuffledWordBank = [...shuffle(wordBank)];
 let processedWords = [];
 let currentWord = '';
-const overlay = select('.overlay');
-const scoreInfo = select('.score-info');
 const scoreDetails = select('.score-details');
+const leaderboard = select('.overlay');
 
 const typewriterAudio = new Audio('src/audio/keyboard-typing.mp3');
 typewriterAudio.muted = false;
@@ -91,15 +93,11 @@ const hitsAudios = [pointGainedAudio1, pointGainedAudio2, pointGainedAudio3, poi
 
 //function to generate score
 function generateScore () {
-
     let heading = '';
     let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
 
-    overlay.removeAttribute('style', `visibility: hidden;`);
-    overlay.style.visibility = 'visible';
-    scoreInfo.style.display = 'block';
+    dialog.showModal();
     gameProgressAudio.pause();
-    gameProgressAudio.currentTime = 0;
 
     // create score object to show player results
     const score = new Score(today, hitCount, wordBank.length);
@@ -128,6 +126,7 @@ function generateScore () {
 // function to update the number of words the player has already matched
 function updateHits() {
     let i = Math.floor(Math.random() * hitsAudios.length); 
+    hitsAudios[i].volume = effectVolume;    
     hitsAudios[i].play();    
     hits.innerText = ++hitCount;
     hits.style.color = '#941c1c';
@@ -140,7 +139,7 @@ function updateHits() {
         setTimeout(function() {
             plusOne.style.display = 'none';
             clearInterval(addPlus);
-        }, 2000);
+        }, 500);
     });
 }
 
@@ -188,8 +187,8 @@ function updateTimer() {
         focusInput();
         let themeInterval = setInterval(function(){
             gameProgressAudio.pause();
-            gameProgressAudio.currentTime = 0;
             themeAudio.currentTime = 0;
+            themeAudio.volume = mainVolume;
             themeAudio.play();
             clearInterval(themeInterval);
         }, 4_000);
@@ -227,6 +226,8 @@ function generateWord() {
         resetGame();
         focusInput();
         let themeInterval = setInterval(function(){
+            themeAudio.currentTime = 0;
+            themeAudio.volume = mainVolume;
             themeAudio.play();
             clearInterval(themeInterval);
         }, 4_000);
@@ -261,7 +262,6 @@ function playAudio(audioName, timeInMilisec){
     audioName.play();
     setTimeout(() => { 
         audioName.pause(); 
-        audioName.currentTime = 0; 
     }, timeInMilisec);
 }
 
@@ -273,8 +273,9 @@ onEvent('keyup', userInput, function() {
 
 // start game when start button is clicked
 onEvent('click', startButton, function() {
-    themeAudio.currentTime = 0;
     themeAudio.pause();
+    gameProgressAudio.currentTime = 0;
+    gameProgressAudio.volume = mainVolume;
     gameProgressAudio.play();
     hitsBlock.style.visibility = 'visible';
     hint.style.visibility = 'visible';
@@ -288,10 +289,20 @@ onEvent('click', startButton, function() {
     generateWord();
 });
 
-onEvent('click', overlay, function () {
-    this.removeAttribute('style', `visibility: visible;`);
-    this.style.visibility = 'hidden';
-    scoreInfo.style.display = 'none';
+// onEvent('click', overlay, function () {
+//     this.removeAttribute('style', `visibility: visible;`);
+//     this.style.visibility = 'hidden';
+//     scoreInfo.style.display = 'none';
+// });
+
+// close dialog when bounds outside of the modal are clicked
+onEvent('click', dialog, function(event) {
+    const rect = this.getBoundingClientRect();
+
+    if(event.clientY < rect.top || event.clientY > rect.bottom || 
+       event.clientX < rect.left || event.clientX < rect.right) {
+        dialog.close();
+    }
 });
 
 // when page is reloaded set input focus
@@ -307,6 +318,7 @@ onEvent('load', window, () => {
     
     let themeInterval = setInterval(function(){
         themeAudio.currentTime = 0;
+        themeAudio.volume = mainVolume;
         themeAudio.play();
         startButton.style.visibility = 'visible';
         ninjaSubheading.style.visibility = 'visible';
