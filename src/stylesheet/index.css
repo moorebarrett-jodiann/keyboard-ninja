@@ -479,6 +479,7 @@ dialog {
     color: var(--app-light-text-color);
     transition: all 0.25s ease-in;
     cursor: pointer;
+    visibility: hidden;
 }
 
 .leaderboard-modal.gold {

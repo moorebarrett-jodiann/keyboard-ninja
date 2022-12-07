@@ -19,6 +19,7 @@ let timeValue = 0;
 const word = select ('.word');
 const userInput = select ('.user-input');
 const startButton = select('.start');
+const leaderModal = select('.leaderboard-modal');
 const ninjaHeading = select('.center .heading p.merienda');
 const ninjaSubheading = select('.center .heading h3');
 const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
@@ -46,8 +47,6 @@ const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'buildin
 let shuffledWordBank = [...shuffle(wordBank)];
 let processedWords = [];
 let currentWord = '';
-const overlay = select('.overlay');
-const scoreInfo = select('.score-info');
 const scoreDetails = select('.score-details');
 
 const typewriterAudio = new Audio('src/audio/keyboard-typing.mp3');
@@ -238,6 +237,7 @@ function generateWord() {
 // function to reset game
 function resetGame() {
     startButton.style.visibility = 'visible';
+    leaderModal.style.visibility = 'visible';
     userInput.classList.add('disabled');
     userInput.setAttribute('readonly', 'readonly');
     hitsBlock.style.visibility = 'hidden';
@@ -283,6 +283,7 @@ onEvent('click', startButton, function() {
     timeRemaining.style.display = 'inline';
     clock.style.display = 'none';
     startButton.removeAttribute('style', `visibility: visible;`);
+    leaderModal.removeAttribute('style', `visibility: visible;`);
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
     focusInput();
@@ -322,6 +323,7 @@ onEvent('load', window, () => {
         themeAudio.volume = mainVolume;
         themeAudio.play();
         startButton.style.visibility = 'visible';
+        leaderModal.style.visibility = 'visible';
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
         clearInterval(themeInterval);
