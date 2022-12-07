@@ -43,12 +43,6 @@ body{
 /*****       Main                            ******/
 /**************************************************/
 
-.flexbox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .center {
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
@@ -69,6 +63,12 @@ body{
     display: grid;
     place-items: center;
     margin-bottom: 20px;
+}
+
+.center .heading .flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .center .heading p.bungee {
@@ -162,6 +162,9 @@ body{
     flex-direction: column;
     flex-grow: 1;
     text-align: left;
+}
+
+.center .game-container .game-details .row .card + .card {
     display: grid;
     place-items: center;
 }
@@ -196,17 +199,19 @@ body{
 
 .center .game-container .game-details > div {
     display: grid;
-    place-items: center;
 }
 
 .center .game-container .game-details .stats {
     display: grid;
     place-items: center;
+    justify-content: space-between;
 }
 
 .center .game-container .game-details .stats .timer {
     font-size: 90px;
     color: var(--app-light-text-color);
+    position: relative;
+    transform: translate(-50%, 0);
 }
 
 .center .game-container .game-details .stats .timer p span {
@@ -364,7 +369,7 @@ body{
 
 @media (max-width: 480px) {
     .center .game-container .game-details .stats .timer {
-        font-size: 80px;
+        font-size: 60px;
     }
 
     .center .game-container .game-details .word-container .hits {
@@ -470,79 +475,51 @@ dialog {
 /*****           Leader Board                ******/
 /**************************************************/
 
-.leaderboard {
-    padding: 20px;
-    display: block;    
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color:   rgba(224, 224, 226, 0.227);
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;    
-    font-weight: 500;
-    color: #1C1F33;
-    margin-bottom: 20px;
-}
-
 .leaderboard-modal {
-    width: 100%;
-    text-align: center;
     color: var(--app-light-text-color);
-    font-size: 50px;
-    padding: 0px 10px;
-}
-
-.leaderboard-modal:hover {
-    color: var(--app-purple);
+    transition: all 0.25s ease-in;
+    cursor: pointer;
 }
 
 .leaderboard-modal.gold {
     background: linear-gradient( 
-        90deg, 
-        rgb(219, 163, 38) 0%, 
-        rgb(236, 172, 32) 20%, 
-        rgb(186, 148, 62) 39%, 
-        rgb(254, 243, 111) 50%, 
-        rgb(186, 148, 62) 60%, 
-        rgb(236, 172, 32) 80%, 
-        rgb(219, 163, 38) 100% 
+        90deg,         
+        rgb(252, 194, 1) 0%, 
+        rgb(255, 180, 4) 20%, 
+        rgb(220, 146, 2) 39%, 
+        rgb(255, 247, 122) 50%, 
+        rgb(220, 146, 2) 60%, 
+        rgb(255, 180, 4) 80%, 
+        rgb(252, 194, 1) 100% 
     );
     background-clip: text;
     -webkit-text-fill-color: transparent;	
-    animation: shine 3s infinite;
+    animation: shine 3s infinite, bounce 2s infinite;
     background-size: 200%;
     background-position: left;  
 }
 
 /* flex leaderboard size with screen width 800px and up */
 @media (min-width: 801px) {
-    .leaderboard {
-        width: 60%;
-        display: block;
-    }
-
     .leaderboard-modal {
-        display: none;
+        font-size: 60px;
+        padding: 20px;
     }
 }
 
 /* flex leaderboard size with screen width 801px and down */
 @media (max-width: 800px) {
-    .leaderboard {
-        display: none;
-    }
-
-    .leaderboard-modal {
-        display: block;        
+    .leaderboard-modal {      
+        font-size: 55px;
+        padding: 3px;
     }
 }
 
 /* flex leaderboard size with screen width 480px and down */
-@media (max-width: 480px) {
-    .leaderboard {
-        display: none;
-    }
-
-    .leaderboard-modal {
-        display: block;        
+@media (max-width: 410px) {
+    .leaderboard-modal {    
+        font-size: 45px;
+        padding: 3px;
     }
 }
 
@@ -622,3 +599,8 @@ dialog {
     }
 }
   
+@keyframes bounce {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}

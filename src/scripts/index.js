@@ -46,8 +46,9 @@ const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'buildin
 let shuffledWordBank = [...shuffle(wordBank)];
 let processedWords = [];
 let currentWord = '';
+const overlay = select('.overlay');
+const scoreInfo = select('.score-info');
 const scoreDetails = select('.score-details');
-const leaderboard = select('.overlay');
 
 const typewriterAudio = new Audio('src/audio/keyboard-typing.mp3');
 typewriterAudio.muted = false;
