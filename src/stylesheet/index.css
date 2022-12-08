@@ -74,7 +74,7 @@ body{
 .center .heading p.bungee {
     font-family: 'Bungee', cursive;
     overflow: hidden;
-    border-right: 1px solid #ff833cbf;
+    border-right: 1px solid rgba(255, 131, 60, 0.749);
     white-space: nowrap;
     margin: 0 auto;
     animation: typing 4s steps(25, end);
@@ -421,27 +421,53 @@ dialog {
     animation: appearDown 0.25s ease-out;
 }
 
+dialog::backdrop {
+    background-color: rgb(13 16 19 / 0.3);
+    backdrop-filter: blur(5px);
+}
+
 .score-info .score-details {
-    padding: 20px 10px;
+    padding: 10px;
+    width: 300px;
     display: grid;
     place-items: center;
 }
 
 .score-info .score-details h2 {
-    font-size: 30px;
+    font-size: 25px;
+    color: rgba(255, 131, 60, 0.749);
+    text-transform: uppercase;
+}
+
+.score-info .score-details p {
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: rgba(255, 131, 60, 0.749);
 }
 
 .score-info .score-details table {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .score-info .score-details table td {
-    padding: 2px 0px;
+    padding: 5px;
     font-size: 16px;
     font-weight: 400;
     color: var(--app-dark-text-color);
+    width: 33.33%;
+}
+
+.score-info .score-details table tr:first-child td {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--app-green);
+}
+
+.score-info .score-details table tr td:last-child {
+    text-align: right;
 }
 
 /**************************************************/
@@ -497,6 +523,49 @@ dialog {
         font-size: 45px;
         padding: 3px;
     }
+}
+
+/*-----------------Leaderboard Tooltip-----------------------*/
+
+.leaderboard-modal-btn .tooltip {
+    position: relative;
+}
+
+.leaderboard-modal-btn .tooltip:before,
+.leaderboard-modal-btn .tooltip:after {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+.leaderboard-modal-btn .tooltip:before {
+    color: #fff;
+    content: attr(data-title);
+    font-size: 14px;
+    white-space: nowrap;
+    top: -40%;
+    left: -8px;
+}
+
+.leaderboard-modal-btn .tooltip.expand:before {
+    transform: scale3d(.2,.2,1);
+    transition: all .2s ease-in-out;
+}
+
+.leaderboard-modal-btn .tooltip.expand:after {
+    transform: translate3d(0,6px,0);
+    transition: all .1s ease-in-out;
+}
+
+.leaderboard-modal-btn .tooltip.expand:hover:before,
+.leaderboard-modal-btn .tooltip.expand:hover:after {
+    opacity: 1;
+    transform: scale3d(1,1,1);
+}
+
+.leaderboard-modal-btn .tooltip.expand:hover:after {
+    transition: all .2s .1s ease-in-out;
 }
 
 /**************************************************/

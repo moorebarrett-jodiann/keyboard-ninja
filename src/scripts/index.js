@@ -15,6 +15,7 @@ const plusOne = select('.hits span.plus-one');
 const hitsBlock = select('.hits');
 let hitCount = 0;
 const timer = select('.timer span');
+const timerStart = 15;
 let timeValue = 0;
 const word = select ('.word');
 const userInput = select ('.user-input');
@@ -48,11 +49,12 @@ const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'buildin
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
-'database', 'periodic'];
+'database', 'periodic', 'capitalism', 'abominable'];
 
 let shuffledWordBank = [...shuffle(wordBank)];
+let wordCount = shuffledWordBank.length;
+
 let processedWords = [];
-let scoreArray = [];
 let currentWord = '';
 const scoreDetails = select('.score-details');
 
@@ -104,29 +106,30 @@ function retrieveScore () {
     dialog.showModal();
     let result = '';
     let index = 0;
-    
+
     // retrieve local storage array and sort by hits (highest to lowest)
-    const scores = JSON.parse(localStorage.getItem('scores'));
+    const scores = JSON.parse(localStorage.getItem('scores') || "[]");
     scores.sort((a, b) => b.hits - a.hits);
 
-    // trim array to top 9 entries
-    scores.slice(0, 9);
+    if(scores.length > 9) {
+        scores.splice(9);
+    }
 
     // build result list
     result += `
-        <h2>Your High Scores</h2>
+        <h2>High Scores</h2>
+        <p>Total Words: ${wordCount}</p>
         <table>
             <tbody>`;
-
             for(const score of scores) {
                 result += `
                 <tr>
                     <td>#${++index}</td>
-                    <td><p>${score.hits} words</p></td>
-                    <td><p>${score.percentage}%</p></td>
+                    <td>${(score.hits > 1) ? `${score.hits} words` : `${score.hits} word`}</td>
+                    <td>${score.percentage}%</td>
                 </tr>
             `;
-    }
+            }
     result += `</tbody>
         </table>
     `;
@@ -138,19 +141,20 @@ function retrieveScore () {
 //function to save score to local storage
 function saveScore () {
     gameProgressAudio.pause();
-    let percentage = Math.floor((hitCount / wordBank.length) * 100);
+    let percentage = Math.floor((hitCount / wordCount) * 100);
     let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
 
-    // create score object and add to local storage array
-    const score = {
-        today: today,
-        hits: hitCount,
-        percentage: percentage
-    };
-    
-    scoreArray.push(score);    
-    localStorage.setItem('scores', JSON.stringify(scoreArray));
-    
+    // retrieve existing local storage array and add new object
+    const scores = JSON.parse(localStorage.getItem('scores') || "[]");
+    scores.push({today: today, hits: hitCount, percentage: percentage});
+
+    // recreate score object and add to local storage array
+    localStorage.setItem('scores', JSON.stringify(scores));
+
+    successAudio.volume = effectVolume;
+    successAudio.play();
+
+    // retrieve scores
     retrieveScore();
 }
 
@@ -207,7 +211,7 @@ function compareValues (currWord, input) {
 
 // start timer
 function updateTimer() {
-    let timeleft = 10;
+    let timeleft = timerStart;
     timeValue = setInterval(function(){
     if(timeleft <= 0){
         // stop timer on expiry
@@ -222,7 +226,7 @@ function updateTimer() {
             themeAudio.volume = mainVolume;
             themeAudio.play();
             clearInterval(themeInterval);
-        }, 2_000);
+        }, 4_000);
     }
     timer.innerText = timeleft;
     timeleft -= 1;
@@ -277,7 +281,7 @@ function resetGame() {
     clock.style.display = 'inline';
     word.innerText = '';
     hits.innerText = 0;
-    timer.innerText = 10;
+    timer.innerText = timerStart;
     hitCount = 0;
     focusInput();
 }
@@ -287,6 +291,7 @@ function focusInput() {
     userInput.value = '';
     userInput.focus();
     userInput.scrollIntoView();
+    timer.innerText = timerStart;
 }
 
 // function to control how long audio files play
@@ -325,7 +330,6 @@ onEvent('click', startButton, function() {
 // show score board when leaderboard button is clicked
 onEvent('click', leaderModalBtn, function () {
     retrieveScore();
-    console.log('here');
 });
 
 // close dialog when bounds outside of the modal are clicked
@@ -334,7 +338,6 @@ onEvent('click', dialog, function(event) {
     
     if(event.clientY < rect.top || event.clientY > rect.bottom || 
         event.clientX < rect.left || event.clientX < rect.right) {
-        console.log('here2');
         dialog.close();
     }
 });
