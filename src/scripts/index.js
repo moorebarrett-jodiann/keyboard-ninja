@@ -7,7 +7,7 @@
  * */
 
 import { select, onEvent } from './utils.js';
-import Score from './Score.js';
+// import Score from './Score.js';
 
 /**--------------------------------- Data ----------------------------------- */
 const hits = select('.hits span');
@@ -19,7 +19,7 @@ let timeValue = 0;
 const word = select ('.word');
 const userInput = select ('.user-input');
 const startButton = select('.start');
-const leaderModal = select('.leaderboard-modal');
+const leaderModalBtn = select('.leaderboard-modal-btn');
 const ninjaHeading = select('.center .heading p.merienda');
 const ninjaSubheading = select('.center .heading h3');
 const timeRemaining = select('.center .game-container .game-details .stats .timer p span');
@@ -29,23 +29,30 @@ let mainVolume = 0.07;
 let effectVolume = 0.08;
 const dialog = select('dialog');
 
+// const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
+// 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
+// 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
+// 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
+// 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future',
+// 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency',
+// 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
+// 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
+// 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
+// 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
+// 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
+// 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
+// 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
+// 'keyboard', 'window'];
+
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
-'database', 'periodic', 'capitalism', 'abominable', 'component', 'future',
-'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency',
-'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
-'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
-'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
-'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
-'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
-'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
-'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
-'keyboard', 'window'];
+'database', 'periodic'];
 
 let shuffledWordBank = [...shuffle(wordBank)];
 let processedWords = [];
+let scoreArray = [];
 let currentWord = '';
 const scoreDetails = select('.score-details');
 
@@ -91,36 +98,60 @@ const hitsAudios = [pointGainedAudio1, pointGainedAudio2, pointGainedAudio3, poi
 
 /**---------------------Game Functions and Events---------------------------- */
 
-//function to generate score
-function generateScore () {
-    let heading = '';
-    let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
+//function to retrieve top 9 scores from local storage
+function retrieveScore () {
 
     dialog.showModal();
-    gameProgressAudio.pause();
-
-    // create score object to show player results
-    const score = new Score(today, hitCount, wordBank.length);
+    let result = '';
+    let index = 0;
     
-    if(score.percentage >= 45) {
-        heading = `<h2 class="success">Awesome Job!</h2>`;
-        successAudio.play();
-    } else if(score.percentage > 25 && score.percentage < 45) {
-        heading = `<h2 class="pass">Good Job!</h2>`;
-        successAudio.play();
-    } else {
-        heading = `<h2 class="fail">Better Luck Next Time</h2>`;
-        failAudio.play();
-    }
+    // retrieve local storage array and sort by hits (highest to lowest)
+    const scores = JSON.parse(localStorage.getItem('scores'));
+    scores.sort((a, b) => b.hits - a.hits);
 
-    scoreDetails.innerHTML = `
-        ${heading}
-        <div class="results">
-            <p class="score">Your Score: <span>${Math.floor(parseFloat(score.percentage))}%</span></p>
-            <p class="out-of">You got ${score.hits} out of ${wordBank.length} words</p>
-            <p class="date">${score.date}</p>
-        </div>
+    // trim array to top 9 entries
+    scores.slice(0, 9);
+
+    // build result list
+    result += `
+        <h2>Your High Scores</h2>
+        <table>
+            <tbody>`;
+
+            for(const score of scores) {
+                result += `
+                <tr>
+                    <td>#${++index}</td>
+                    <td><p>${score.hits} words</p></td>
+                    <td><p>${score.percentage}%</p></td>
+                </tr>
+            `;
+    }
+    result += `</tbody>
+        </table>
     `;
+    
+    scoreDetails.innerHTML = result;
+}
+
+
+//function to save score to local storage
+function saveScore () {
+    gameProgressAudio.pause();
+    let percentage = Math.floor((hitCount / wordBank.length) * 100);
+    let today = new Date().toLocaleDateString('en-ca', { year:"numeric", month:"short", day:"numeric"});
+
+    // create score object and add to local storage array
+    const score = {
+        today: today,
+        hits: hitCount,
+        percentage: percentage
+    };
+    
+    scoreArray.push(score);    
+    localStorage.setItem('scores', JSON.stringify(scoreArray));
+    
+    retrieveScore();
 }
 
 // function to update the number of words the player has already matched
@@ -176,13 +207,13 @@ function compareValues (currWord, input) {
 
 // start timer
 function updateTimer() {
-    let timeleft = 99;
+    let timeleft = 10;
     timeValue = setInterval(function(){
     if(timeleft <= 0){
         // stop timer on expiry
         clearInterval(timeValue);
         // time has expired, calculate player's score and reset game
-        generateScore();
+        saveScore();
         resetGame();
         focusInput();
         let themeInterval = setInterval(function(){
@@ -191,7 +222,7 @@ function updateTimer() {
             themeAudio.volume = mainVolume;
             themeAudio.play();
             clearInterval(themeInterval);
-        }, 4_000);
+        }, 2_000);
     }
     timer.innerText = timeleft;
     timeleft -= 1;
@@ -222,7 +253,7 @@ function generateWord() {
         }
     } else {
         // player has exhausted all words so calculate their score
-        generateScore();
+        saveScore();
         resetGame();
         focusInput();
         let themeInterval = setInterval(function(){
@@ -237,7 +268,7 @@ function generateWord() {
 // function to reset game
 function resetGame() {
     startButton.style.visibility = 'visible';
-    leaderModal.style.visibility = 'visible';
+    leaderModalBtn.style.visibility = 'visible';
     userInput.classList.add('disabled');
     userInput.setAttribute('readonly', 'readonly');
     hitsBlock.style.visibility = 'hidden';
@@ -246,7 +277,7 @@ function resetGame() {
     clock.style.display = 'inline';
     word.innerText = '';
     hits.innerText = 0;
-    timer.innerText = 99;
+    timer.innerText = 10;
     hitCount = 0;
     focusInput();
 }
@@ -283,7 +314,7 @@ onEvent('click', startButton, function() {
     timeRemaining.style.display = 'inline';
     clock.style.display = 'none';
     startButton.removeAttribute('style', `visibility: visible;`);
-    leaderModal.removeAttribute('style', `visibility: visible;`);
+    leaderModalBtn.removeAttribute('style', `visibility: visible;`);
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
     focusInput();
@@ -291,18 +322,19 @@ onEvent('click', startButton, function() {
     generateWord();
 });
 
-// onEvent('click', overlay, function () {
-//     this.removeAttribute('style', `visibility: visible;`);
-//     this.style.visibility = 'hidden';
-//     scoreInfo.style.display = 'none';
-// });
+// show score board when leaderboard button is clicked
+onEvent('click', leaderModalBtn, function () {
+    retrieveScore();
+    console.log('here');
+});
 
 // close dialog when bounds outside of the modal are clicked
 onEvent('click', dialog, function(event) {
     const rect = this.getBoundingClientRect();
-
+    
     if(event.clientY < rect.top || event.clientY > rect.bottom || 
-       event.clientX < rect.left || event.clientX < rect.right) {
+        event.clientX < rect.left || event.clientX < rect.right) {
+        console.log('here2');
         dialog.close();
     }
 });
@@ -323,7 +355,7 @@ onEvent('load', window, () => {
         themeAudio.volume = mainVolume;
         themeAudio.play();
         startButton.style.visibility = 'visible';
-        leaderModal.style.visibility = 'visible';
+        leaderModalBtn.style.visibility = 'visible';
         ninjaSubheading.style.visibility = 'visible';
         ninjaSubheading.style.animation = 'appearUp 0.4s ease-in';
         clearInterval(themeInterval);

@@ -417,7 +417,7 @@ dialog {
     background-color: var(--app-white);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;
     border-radius: 10px;
-    padding: 20px 30px;
+    padding: 20px;
     animation: appearDown 0.25s ease-out;
 }
 
@@ -431,58 +431,31 @@ dialog {
     font-size: 30px;
 }
 
-.score-info .score-details h2.fail {
-    color: #941c1c;
+.score-info .score-details table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 15px;
 }
 
-.score-info .score-details h2.pass {
-    color: var(--app-orange);
-}
-
-.score-info .score-details h2.success {
-    color: var(--app-green);
-}
-
-.score-info .score-details h2.average {
-    color: var(--app-orange);
-}
-
-.score-info .score-details .results {
-    display: grid;
-    place-items: center;
-}
-
-.score-info .score-details .results .score {
-    display: grid;
-    place-items: center;
-    margin-bottom: 5px;
-}
-
-.score-info .score-details .results .score span {
-    font-size: 40px;
-    margin-bottom: 5px;
-}
-
-.score-info .score-details .results .out-of {
-    margin-bottom: 5px;
-}
-
-.score-info .score-details .results .date {
-    color: rgba(28, 28, 28, 0.22);
+.score-info .score-details table td {
+    padding: 2px 0px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--app-dark-text-color);
 }
 
 /**************************************************/
 /*****           Leader Board                ******/
 /**************************************************/
 
-.leaderboard-modal {
+.leaderboard-modal-btn {
     color: var(--app-light-text-color);
     transition: all 0.25s ease-in;
     cursor: pointer;
     visibility: hidden;
 }
 
-.leaderboard-modal.gold i {
+.leaderboard-modal-btn.gold i {
     background-image: linear-gradient( 
         90deg,         
         rgb(252, 194, 1) 0%, 
@@ -504,7 +477,7 @@ dialog {
 
 /* flex leaderboard size with screen width 800px and up */
 @media (min-width: 801px) {
-    .leaderboard-modal {
+    .leaderboard-modal-btn {
         font-size: 60px;
         padding: 20px;
     }
@@ -512,7 +485,7 @@ dialog {
 
 /* flex leaderboard size with screen width 801px and down */
 @media (max-width: 800px) {
-    .leaderboard-modal {      
+    .leaderboard-modal-btn {      
         font-size: 55px;
         padding: 3px;
     }
@@ -520,7 +493,7 @@ dialog {
 
 /* flex leaderboard size with screen width 480px and down */
 @media (max-width: 410px) {
-    .leaderboard-modal {    
+    .leaderboard-modal-btn {    
         font-size: 45px;
         padding: 3px;
     }
