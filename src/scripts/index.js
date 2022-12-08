@@ -115,24 +115,28 @@ function retrieveScore () {
         scores.splice(9);
     }
 
-    // build result list
-    result += `
-        <h2>High Scores</h2>
-        <p>Total Words: ${wordCount}</p>
-        <table>
-            <tbody>`;
-            for(const score of scores) {
-                result += `
-                <tr>
-                    <td>#${++index}</td>
-                    <td>${(score.hits > 1) ? `${score.hits} words` : `${score.hits} word`}</td>
-                    <td>${score.percentage}%</td>
-                </tr>
-            `;
-            }
-    result += `</tbody>
-        </table>
-    `;
+    if (scores.length > 0) {
+        // build result list
+        result += `
+            <h2>High Scores</h2>
+            <p>Total Words: ${wordCount}</p>
+            <table>
+                <tbody>`;
+                for(const score of scores) {
+                    result += `
+                    <tr>
+                        <td>#${++index}</td>
+                        <td>${(score.hits > 1) ? `${score.hits} words` : `${score.hits} word`}</td>
+                        <td>${score.percentage}%</td>
+                    </tr>
+                ` 
+                }
+        result += `</tbody>
+            </table>
+        `;
+    } else {
+        result += `<h2>No Scores Available</h2>`;
+    }
     
     scoreDetails.innerHTML = result;
 }
