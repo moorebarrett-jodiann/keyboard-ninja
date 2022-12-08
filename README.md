@@ -11,16 +11,10 @@
 
 ## Description
 
-Fun, interactive, speed typing game built using HTML, CSS, EcmaScript (ES) modules and [lite-server](https://www.npmjs.com/package/light-server)
+Fun, interactive, speed typing game built using HTML, CSS, EcmaScript (ES) modules and [lite-server](https://www.npmjs.com/package/light-server).
+Scoreboard data is stored using local storage.
 
-**Splash Screen**
 ![Splash Screen](./src/images/game-screenshots/splash-screen.png?raw=true "Game Splash Screen")
-
-**Game in Progress**
-![Game](./src/images/game-screenshots/game-in-progress-with-timer-countdown.png?raw=true "Game in Progress")
-
-**Score Board**
-![Game](./src/images/game-screenshots/scoreboard.png?raw=true "Scoreboard")
 
 ## Instructions
 
