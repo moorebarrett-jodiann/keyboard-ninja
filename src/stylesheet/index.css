@@ -352,7 +352,7 @@ body{
     }
 
     .center .game-container .game-details .word-container p.word {
-        font-size: 50px;        
+        font-size: 49px;        
         height: 80px;
     }
 
@@ -428,9 +428,11 @@ dialog::backdrop {
 
 .score-info .score-details {
     padding: 10px;
-    width: 350px;
+    width: 280px;
     display: grid;
     place-items: center;
+    height: 300px;
+    overflow:auto;
 }
 
 .score-info .score-details h2 {
