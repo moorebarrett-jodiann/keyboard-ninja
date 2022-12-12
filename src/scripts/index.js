@@ -15,8 +15,7 @@ const plusOne = select('.hits span.plus-one');
 const hitsBlock = select('.hits');
 let hitCount = 0;
 const timer = select('.timer span');
-const timerStart = 15;
-let timeValue = 0;
+const timerStart = 99;
 const word = select ('.word');
 const userInput = select ('.user-input');
 const startButton = select('.start');
@@ -30,26 +29,20 @@ let mainVolume = 0.07;
 let effectVolume = 0.08;
 const dialog = select('dialog');
 
-// const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
-// 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
-// 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
-// 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
-// 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future',
-// 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency',
-// 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
-// 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
-// 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
-// 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
-// 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
-// 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
-// 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
-// 'keyboard', 'window'];
-
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle',
 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy',
-'database', 'periodic', 'capitalism', 'abominable'];
+'database', 'periodic', 'capitalism', 'abominable', 'component', 'future',
+'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency',
+'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
+'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
+'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
+'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
+'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
+'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
+'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
+'keyboard', 'window'];
 
 let shuffledWordBank = [...shuffle(wordBank)];
 let wordCount = shuffledWordBank.length;
@@ -216,7 +209,7 @@ function compareValues (currWord, input) {
 // start timer
 function updateTimer() {
     let timeleft = timerStart;
-    timeValue = setInterval(function(){
+    let timeValue = setInterval(function(){
     if(timeleft <= 0){
         // stop timer on expiry
         clearInterval(timeValue);
@@ -295,7 +288,6 @@ function focusInput() {
     userInput.value = '';
     userInput.focus();
     userInput.scrollIntoView();
-    timer.innerText = timerStart;
 }
 
 // function to control how long audio files play
@@ -326,6 +318,7 @@ onEvent('click', startButton, function() {
     leaderModalBtn.removeAttribute('style', `visibility: visible;`);
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
+    timer.innerText = timerStart;
     focusInput();
     updateTimer();
     generateWord();
@@ -347,8 +340,7 @@ onEvent('click', dialog, function(event) {
 });
 
 // when page is reloaded set input focus
-onEvent('load', window, () => {
-    
+onEvent('load', window, () => {    
     playAudio(typewriterAudio, 2_500);
     let swordInterval = setInterval(function(){
         playAudio(swordAudio, 4_000);
