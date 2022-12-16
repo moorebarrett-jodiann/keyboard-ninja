@@ -1,4 +1,4 @@
-## My Contacts
+## Keyboard Ninja
  
 - [Click to Play](https://moorebarrett-jodiann.github.io/keyboard-ninja/)
 - [How to Play](#instructions)
