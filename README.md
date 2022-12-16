@@ -1,9 +1,8 @@
 ## Keyboard Ninja
  
 - [Click to Play](https://moorebarrett-jodiann.github.io/keyboard-ninja/)
-- [How to Play](#instructions)
-- [Screenshots](#screenshots)
 - [Description](#description)
+- [How to Play](#instructions)
 - [Usage](#usage)
 - [Requirements](#requirements)
 - [Tests](#tests)
