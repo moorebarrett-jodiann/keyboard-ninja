@@ -45,9 +45,14 @@ body{
 
 .center {
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
     display: grid;
     place-items: center;
+}
+
+@media only screen and (min-width: 481px) and (max-width: 620px) {
+    .center {
+        height: 0;
+    }
 }
 
 .center .game-container {
@@ -211,7 +216,7 @@ body{
     font-size: 90px;
     color: var(--app-light-text-color);
     position: relative;
-    transform: translate(-50%, 0);
+    transform: translate(-40%, 0);
 }
 
 .center .game-container .game-details .stats .timer p span {
@@ -390,7 +395,6 @@ body{
 }
 
 .center .game-container .game-details .btn {
-    visibility: hidden;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 26px 30px -10px, rgba(0, 0, 0, 0.1) 0px 16px 10px -10px;    
     font-weight: 600;
@@ -400,13 +404,25 @@ body{
     padding: 0px 20px;
 }
 
+.center .game-container .game-details .btn i {
+    margin-right: 10px;
+}
+
 .center .game-container .game-details .button-glow {
     animation: glowing 5000ms infinite;
 }
 
 .center .game-container .game-details button.start {
-    background-color: var(--app-green);
     visibility: hidden;
+    background-color: var(--app-green);
+}    
+
+.center .game-container .game-details button.reset {
+    background-color: var(--app-orange);
+}    
+
+.center .game-container .game-details button.reset.hidden {
+    display: none;
 }    
 
 /**************************************************/
@@ -608,7 +624,7 @@ dialog::backdrop {
 @keyframes fly-in {
     from {
         opacity: 0;
-        transform: translate(100%, 0px);
+        transform: translate(20px, 0px);
     }
     to {
         opacity: 1;

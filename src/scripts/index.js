@@ -28,6 +28,8 @@ const hint = select('.hint');
 let mainVolume = 0.07;
 let effectVolume = 0.08;
 const dialog = select('dialog');
+const resetBtn = select('.reset');
+let timeValue;
 
 const wordBank = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population',
 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute',
@@ -198,10 +200,8 @@ function compareValues (currWord, input) {
         word.innerHTML = string;
         if(currWord === input) {
             updateHits();
-            // setTimeout(() => { 
-                focusInput();
-                generateWord();
-            // }, 100);
+            focusInput();
+            generateWord();
         }
     }
 }
@@ -209,24 +209,22 @@ function compareValues (currWord, input) {
 // start timer
 function updateTimer() {
     let timeleft = timerStart;
-    let timeValue = setInterval(function(){
-    if(timeleft <= 0){
-        // stop timer on expiry
-        clearInterval(timeValue);
-        // time has expired, calculate player's score and reset game
-        saveScore();
-        resetGame();
-        focusInput();
-        let themeInterval = setInterval(function(){
-            gameProgressAudio.pause();
-            themeAudio.currentTime = 0;
-            themeAudio.volume = mainVolume;
-            themeAudio.play();
-            clearInterval(themeInterval);
-        }, 4_000);
-    }
-    timer.innerText = timeleft;
-    timeleft -= 1;
+    timeValue = setInterval(function(){ 
+        if(timeleft <= 0){
+            // calculate player's score and reset game
+            saveScore();
+            resetGame();
+            focusInput();
+            let themeInterval = setInterval(function(){
+                gameProgressAudio.pause();
+                themeAudio.currentTime = 0;
+                themeAudio.volume = mainVolume;
+                themeAudio.play();
+                clearInterval(themeInterval);
+            }, 4_000);
+        }
+        timer.innerText = timeleft;
+        timeleft -= 1;
     }, 1000);
 }
 
@@ -268,9 +266,11 @@ function generateWord() {
   
 // function to reset game
 function resetGame() {
+    startButton.style.display = 'inline';
     startButton.style.visibility = 'visible';
     leaderModalBtn.style.visibility = 'visible';
     userInput.classList.add('disabled');
+    resetBtn.classList.add('hidden');
     userInput.setAttribute('readonly', 'readonly');
     hitsBlock.style.visibility = 'hidden';
     hint.style.visibility = 'hidden';
@@ -281,6 +281,7 @@ function resetGame() {
     timer.innerText = timerStart;
     hitCount = 0;
     focusInput();
+    clearInterval(timeValue);
 }
 
 // function to keep the focus on the input 
@@ -313,8 +314,10 @@ onEvent('click', startButton, function() {
     hitsBlock.style.visibility = 'visible';
     hint.style.visibility = 'visible';
     timeRemaining.style.display = 'inline';
+    resetBtn.classList.remove('hidden');
     clock.style.display = 'none';
     startButton.removeAttribute('style', `visibility: visible;`);
+    startButton.setAttribute('style', `display: none;`);
     leaderModalBtn.removeAttribute('style', `visibility: visible;`);
     userInput.classList.remove('disabled');
     userInput.removeAttribute('readonly');
@@ -364,3 +367,7 @@ onEvent('load', window, () => {
     
 });
 
+// when reset button is clicked, start over the game
+onEvent('click', resetBtn, () => {
+    resetGame();
+});
