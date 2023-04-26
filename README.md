@@ -21,6 +21,7 @@ Scoreboard data is stored using local storage.
 2. In the white box type the word you see in the red box above it
 3. If you spell the word correctly, a new word will be displayed
 4. Get as many words typed before the timer runs out
+5. Feel free to ```reset``` the game at any time to start over
 
 ##### Are you the next Keyboard Ninja? ####
 ### 😄😄 HAVE FUN!! 😄😄 ###
